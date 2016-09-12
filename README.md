@@ -6,22 +6,31 @@ A project management tool meant to be used in tandem with [Kanbanik](http://kanb
 ### Configuration Files
   There are 3 files that need to be modified depending on where everything is located (Kanbanik, Database, and Where you want to deploy)
     '~/server.js' - The IP and port variables will need to be set, this is where the app will be deployed
+
     '~/config.json' - This is the IP where the MongoDB is located
+
     '~/app/ApiConfigInfo.js' - This is where the OverseerAPI is located (server.js ip and port) and where Kanbanik is running
 
 ### Dependencies (For just running the project remotely)
   NodeJS - Installed, check this by executing 'node' in the terminal`
+
   Compiled project (node_modules/, bower_components/ public/minified/ folders all full of files)
 
 Dependencies (For working on the project, changing things etc etc)
+
   NodeJS - Installed locally in the home with the path set. Check this by executing 'node' in the terminal
+
   NPM - Configured to work with the firewall at COMPANY
+
   Bower - Configured to work with the firewall at COMPANY
+
     These configuration files can be found in the PackageManagementConfig folder 
       (Windows: Place them into your accounts root folder, Linux: Google it)
+
   Grunt - Installed globally
 
   Kanbanik - Needs to be running or the config file 'app/ApiConfigInfo.js' has to be configured to access Kabanik remotely
+
   MongoDB - Needs to be running or the config file 'config.json' has to be configured to look at the DB remotely
 
 ## How To Configure NPM and Bower to work with the firewall
@@ -29,11 +38,15 @@ Dependencies (For working on the project, changing things etc etc)
 
 ## Fresh Installation Instructions (node_modules/, bower_components/, public/minified/js/, public/minified/css/ folders empty/non-exsistant)
   Once you have NPM and Bower configured: 
+
     in the terminal of the root folder of the project (where server.js is located)
+
     execute 'npm install' without the quotes.  This will install all the dependencies required for the entire project
 
   Chances are both Grunt and Bower will install wrong, so if you cannot run the commands
+
     'bower install' or 'grunt'  
+
     then install them globally by running the command 'npm install –g bower' and 'npm install -g grunt'
 
 ## What is NPM, Bower and Grunt?
@@ -42,34 +55,46 @@ Dependencies (For working on the project, changing things etc etc)
     Bower is another package manager typically used for the front end of the site.  I am using it to pull in dependencies such as Angular and JQuery
 
     GruntJS is a JavaScript task runner.  And is used to "compile" the Angular app
+
       It is performing tasks to run tools such as  
+
         JSHint - A tool that helps detect errors and potential problems in the JavaScript code
+
         JSCS - A tool that makes sure all the code adheres to a specific code style (I am using Google's coding style)  
+
         NGAnnotate - A tool that allow Angular code to be minified (uglified)
+
         Uglify - Compiles multiple JavaScript and CSS files into a single file, this drastically increases speed when loading web pages
+
         Less - Compiles .less files into CSS.  This enables the uses of variables in CSS
         
   Okay I have NPM, Bower, and Grunt all installed, now what?
+
     Run 'grunt clean default'
+
       This will clear out previously minified files and recompile everything
+
     Run 'node server.js'
+
       The server should boot without errors and you should be able to see the Angular app on localhost:8081 (Or wherever you ip is set in server.js)
 
 
 ## Overseer - "Architecture"
-  Overseer is built with what is known as the MEAN stack (MongoDB, ExpressJS, AngularJS, NodeJS)
-  The project is split in 2 parts: 
-    API (MongoDB, ExpressJS, NodeJS) and an
-    App (AngularJS)
+Overseer is built with what is known as the MEAN stack (MongoDB, ExpressJS, AngularJS, NodeJS)
 
- ### API
+  The project is split in 2 parts: 
+
+    API (MongoDB, ExpressJS, NodeJS) and an
+
+    App (AngularJS)
+### API
     The API's function is to READ from the DB, reconfigure the data, hold it in memory and serve it when asked for the data via a GET request
 
-  ### APP
+### APP
     The Apps function is to GET data from both the OverseerAPI and the KanbanikAPI and display this data to the user
     It also enables modifying and creating new data(tasks) by POSTing that data out to the KanabanikAPI
 
-  ### API - "Architecture"
+### API - "Architecture"
    One huge problem that I found with Kabanik was the fact that you could not fetch a single project, instead you have to get an entire board
     If you want the tasks a project has, you have to get an entire board and go through each task and match it to a projectId
     I wanted to get rid of all this complexity so that I can just access a users projects, or all tasks in one project etc etc. 
@@ -117,7 +142,7 @@ Dependencies (For working on the project, changing things etc etc)
       'api/helpers/' used by the services to create the objects that are kept in memory, namely the projects
   
   
-  ### APP - "Architecture"
+### APP - "Architecture"
     The app is a very standard AngularJS application, I tried to follow the standards when it comes to naming convention and folder structure
       More information on can be found here 'https://github.com/mgechev/angularjs-style-guide'
 
