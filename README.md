@@ -12,12 +12,13 @@ A project management tool meant to be used in tandem with [Kanbanik](http://kanb
 
     '~/app/ApiConfigInfo.js' - This is where the OverseerAPI is located (server.js ip and port) and where Kanbanik is running
 
-### Dependencies (For just running the project remotely)
+## Dependencies (For just running the project remotely)
   NodeJS - Installed, check this by executing 'node' in the terminal`
 
-  Compiled project (node_modules/, bower_components/ public/minified/ folders all full of files)
+###For a compiled project (node_modules/, bower_components/ public/minified/ folders all full of files)
+  Just execute the startserver script 
 
-Dependencies (For working on the project, changing things etc etc)
+###To "compile from source" dependencies
 
   NodeJS - Installed locally in the home with the path set. Check this by executing 'node' in the terminal
 
