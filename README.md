@@ -5,6 +5,7 @@ A project management tool meant to be used in tandem with [Kanbanik](http://kanb
 
 ### Configuration Files
   There are 3 files that need to be modified depending on where everything is located (Kanbanik, Database, and Where you want to deploy)
+
     '~/server.js' - The IP and port variables will need to be set, this is where the app will be deployed
 
     '~/config.json' - This is the IP where the MongoDB is located
@@ -178,7 +179,11 @@ Overseer is built with what is known as the MEAN stack (MongoDB, ExpressJS, Angu
 
 ## TODO
   Refactor the projectHelper in the API
+
   Status on tasks are Read-Only and captured on the front end.  This should really be involved in the projectHelper section
+
   Completley remove Kanbanik and make this a stand alone application
+
   Refactor the entire backend
+
   Update to Angular2
