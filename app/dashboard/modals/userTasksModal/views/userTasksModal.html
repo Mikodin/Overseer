@@ -1,0 +1,76 @@
+<div class = "panel panel-primary">
+  <div class="panel-heading">
+    <div class="row">
+      <div class="col-sm-8">
+        <i class="fa fa-tasks" aria-hidden="true"></i> {{vm.currentUser.realName}}'s Tasks
+      </div>
+      <div class="col-sm-1 col-sm-offset-3">
+        <button type="button" ng-click="vm.closeModal(false)" class="close" aria-label="Close">
+          <span aria-hidden="true">
+            <i class="fa fa-times" aria-hidden="true"></i>
+          </span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel-body">
+    <div class="col-md-2">
+      <div class="row">
+
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <i class="fa fa-list-alt" aria-hidden="true"></i> Summary</div>
+          <div class="panel-body">
+            <ul>
+              <li>{{vm.currentUser.tasks.length}} Tasks</li>
+              <li>Start: {{vm.currentUser.extras.earliestTaskDueDate}}</li>
+              <li>End: {{vm.currentUser.extras.latestTaskDueDate}}</li>
+              <li>Effort: {{vm.currentUser.extras.totalEffort}}</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <i class="fa fa-list-alt" aria-hidden="true"></i> Projects</div>
+          <div class="panel-body">
+            <ul>
+              <li ng-repeat="project in vm.currentUser.projects">{{project.name}}</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="col-md-10">
+      <table datatable="" 
+             dt-options="vm.dtUserTasksOptions" 
+             dt-columns="vm.userTasksCols" 
+             dt-instance="vm.dtUserTasksInstance" 
+             class="table table-striped table-bordered table-hover" 
+             cellspacing="0" width="100%">
+        <thead>
+          <tr>
+            <th>Filter</th>
+            <th>Filter</th>
+            <th>Filter</th>
+            <th>Filter</th>
+            <th>Filter</th>
+            <th>Filter</th>
+          </tr>
+          <tr>
+            <th>Filter</th>
+            <th>Filter</th>
+            <th>Filter</th>
+            <th>Filter</th>
+            <th>Filter</th>
+            <th>Filter</th>
+          </tr>
+        </thead>
+      </table>
+    </div>
+  </div>
+
+</div>

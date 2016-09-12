@@ -1,0 +1,186 @@
+<form class=""
+      ng-submit="vm.editTask(task)"
+      role="form" 
+      ng-init="task = vm.task">
+  <fieldset>
+    <div class="modal-header">
+      <h3>
+        <i class="fa fa-pencil-square-o" aria-hidden="true"></i> 
+        Edit Task
+      </h3>
+    </div>
+    <div class="fifty-container">
+
+      <div class="form-group">
+        <div class="row">
+          <div class="col-sm-5">
+            <label for="inputName" class="form-control-label">Task Name</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-12">
+            <input type="text" 
+                   class="form-control" 
+                   id="inputName" 
+                   ng-model="task.name" 
+                   placeholder="{{task.name}}"
+                   autofocus
+                   required/>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="row">
+          <div class="col-sm-6">
+            <label for="selectUser" class="form-control-label">Assigned to</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-6">
+            <select name="selectUser" 
+                    class="form-control" 
+                    id="selectUser" 
+                    ng-model="task.assignee" 
+                    ng-options="user.realName for user in vm.users" 
+                    ng-init="task.assignee" >
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="row">
+          <div class="col-sm-5">
+            <label for="selectWorkflow" class="form-control-label">Workflow</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-6">
+            <select name="selectWorkflow" 
+                    class="form-control" 
+                    id="selectWorkflow" 
+                    ng-model="task.workflow" 
+                    ng-options="workflow.name for workflow in vm.project.workflow" 
+                    ng-init="task.workflow = vm.project.workflow[0]" >
+            </select>
+          </div>
+        </div>
+        <div class="" ng-if="task.workflow.nestedWorkflow.workflowitems.length > 0">
+          <div class="row">
+            <div class="col-sm-5 col-sm-offset-1">
+              <label for="selectWorkflow" class="form-control-label">Nested Workflow</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-5 col-sm-offset-1">
+              <select name="selectWorkflow" 
+                      class="form-control" 
+                      id="selectWorkflow" 
+                      ng-model="task.nestedWorkflow" 
+                      ng-options=
+                      "workflow.name for workflow in task.workflow.nestedWorkflow.workflowitems" 
+                      ng-init="task.nestedWorkflow=task.workflow.nestedWorkflow.workflowitems[0]">
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="row">
+          <div class="col-sm-6">
+            <label for="selectDate" class="form-control-label">Due Date</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-4">
+            <input type="text" 
+                   class="form-control" 
+                   id="selectDate" 
+                   ng-click="vm.openDatePicker()"
+                   uib-datepicker-popup 
+                   ng-model="task.dueDate" 
+                   is-open="vm.datePickerPopup.opened" 
+                   datepicker-options="vm.datePickerOptions" 
+                   close-text="Close" />
+          </div>
+          <div class="col-sm-1">
+            <a href="" ng-click="vm.openDatePicker()">
+              <i class="fa fa-calendar fa-lg" aria-hidden="true"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="row">
+          <div class="col-sm-6">
+            <label for="inputReminder" class="form-control-label">Reminder(hrs)</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-6">
+            <input type="number" min="0" class="form-control" id="inputReminder" value="{{task.reminderInHours}}" ng-model="task.reminderInHours"/>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="row">
+          <div class="col-sm-6">
+            <label for="inputPriority" class="form-control-label">Priority</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-6">
+            <input type="number" min="0" class="form-control" id="inputPriority" value="{{task.priority}}" ng-model="task.priority"/>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="row">
+          <div class="col-sm-6">
+            <label for="checkMilestone" class="form-control-label">Milestone  </label>
+            <input type="checkbox" id="checkMilestone" ng-model="task.milestone">
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="row">
+          <div class="col-sm-6">
+            <label for="inputDesc" class="form-control-label">Description</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-12">
+            <textarea class="form-control" id="inputDesc" value="{{task.description}}" ng-model="task.description"/></textarea> 
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-footer form-group">
+        <div class="col-sm-12">
+          <div class="col-sm-3">
+            <button type="button" 
+                    class="btn btn-danger" 
+                    ng-click="vm.deleteTask(task)" 
+                    confirm-if="checked" 
+                    confirm-title="Delete {{task.name}}?"
+                    confirm="WARNING: This action is irreversible!">Delete
+            </button>
+          </div>
+          <div class="col-sm-3 col-sm-offset-3">
+            <button type="button" ng-click="vm.closeModal(false)" class="btn btn-default">Cancel</button>
+          </div>
+          <div class="col-sm-3">
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </fieldset>
+</form>

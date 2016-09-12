@@ -1,0 +1,12 @@
+/node_modules/
+/bower_components/
+app/public/
+app/public/minified/css/*.css
+app/public/minified/js/*.js
+app/public/*.js
+app/public/*.css
+*.*.swp
+*.swp
+*.swo
+.*.sw*
+
